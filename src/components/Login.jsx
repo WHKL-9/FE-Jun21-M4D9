@@ -1,5 +1,7 @@
 import { Form, Button, Container, Row, Col, Spinner } from "react-bootstrap";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 //we need a state for storing the information user entered on the form
 
 const Login = () => {
@@ -9,6 +11,7 @@ const Login = () => {
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +39,7 @@ const Login = () => {
               setPassword("")
               setConfirmPassword("")
               setIsLoading(false)
+              history.push("/Home");
       
             } else {
               alert("Some error occured!");
