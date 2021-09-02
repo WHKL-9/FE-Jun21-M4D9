@@ -59,7 +59,7 @@ const Login = () => {
   return (
     <Container>
       <Row>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={8}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="name">
               <Form.Label>First Name</Form.Label>
@@ -98,8 +98,9 @@ const Login = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter Password"
-                minLength="8"
+                placeholder="Enter Password with at least 1 letter and 1 number"
+                // min 8 char at least one letter and one number
+                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                 required
                 onChange={(e) => setPassword(e.target.value)}
                 value={Password}
