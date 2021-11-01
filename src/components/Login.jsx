@@ -11,55 +11,58 @@ const Login = () => {
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory()
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     console.log("loading the page");
 
-    if (Password != ConfirmPassword){
-        alert ("Please confirm with the same password")
-        setIsLoading(false )
-        setConfirmPassword("")
-    } else if (Password === ConfirmPassword){
-        try {
-            let response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-              method: "POST",
-              body: JSON.stringify(),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            });
-            if (response.ok) {
-              alert("Form was sent 🚀 ");
-              setName("")
-              setSurname("")
-              setEmail("")
-              setPassword("")
-              setConfirmPassword("")
-              setIsLoading(false)
-              history.push("/Home");
-      
-            } else {
-              alert("Some error occured!");
-              setIsLoading(false)
-      
-            }
-          } catch (error) {
-            console.log(error);
-            setIsLoading(false)
-      
+    if (Password != ConfirmPassword) {
+      alert("Please confirm with the same password");
+      setIsLoading(false);
+      setConfirmPassword("");
+    } else if (Password === ConfirmPassword) {
+      try {
+        let response = await fetch(
+          "https://jsonplaceholder.typicode.com/posts",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              name: Name,
+              surname: Surname,
+              email: Email,
+              password: Password,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
+        );
+        if (response.ok) {
+          alert("Form was sent 🚀 ");
+          setName("");
+          setSurname("");
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          setIsLoading(false);
+          history.push("/Home");
+        } else {
+          alert("Some error occured!");
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
     }
-
-    
   };
 
   return (
     <Container>
       <Row>
-        <Col xs={12} md={8}>
+        <Col xs={12} sm={12} md={8} lg={8}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="name">
               <Form.Label>First Name</Form.Label>

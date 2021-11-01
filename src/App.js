@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <Router>
-      <NavBar />
+        <NavBar />
         <Switch>
           <Route
             path="/"
@@ -37,9 +37,7 @@ function App() {
           <Route
             path="/Login"
             exact
-            render={(routerProps) => (
-              <Login {...routerProps} />
-            )}
+            render={(routerProps) => <Login {...routerProps} />}
           />
         </Switch>
       </Router>
